@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style: none;
+}
+
 .App {
   text-align: center;
 }
@@ -25,25 +33,23 @@
   color: #282c34;
 }
 
-.landing-button-add {
-  background-color: #282c34;
-  color: white;
-  width: 190px;
-  height: 40px;
-  margin: 5px;
-  border-radius: 6px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
+.navigation {
+  width: 100%;
 }
-.landing-button-show {
+
+.navigation__list {
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navigation__list--button {
+  display: inline-block;
   background-color: #282c34;
   color: white;
-  width: 270px;
-  height: 40px;
-  margin: 5px;
-  border-radius: 6px;
-  font-size: 18px;
+  margin-top: 15px;
+  font-size: 21px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -96,6 +102,7 @@
   color: white;
   width: 190px;
   height: 50px;
+  margin: 15px;
   border-radius: 6px;
   font-size: 18px;
   font-weight: bold;
@@ -125,6 +132,7 @@ a:visited {
   color: #2b2d42;
   display: flex;
   flex-wrap: wrap;
+  width: 60%;
   justify-content: center;
   align-items: center;
 }
@@ -156,6 +164,17 @@ a:visited {
 
 .container-relatedMovies {
   font-size: 18px;
+  margin: 5px;
+}
+
+.container-delete {
+  font-size: 14px;
+  margin: 5px;
+  font-weight: bold;
+  background-color: #2b2d42;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .pagination-container {
@@ -164,22 +183,18 @@ a:visited {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: red;
 }
 
 .pagination-list {
   font-size: 13px;
-  width: 10px;
-  height: 10px;
-  background-color: aqua;
-  padding: 10px;
-  margin: 3px;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  font-size: 18px;
+  background-color: #282c34;
+  margin: 15px 5px;
   border-radius: 3px;
   cursor: pointer;
-}
-
-.pagination-link {
-  color: red;
 }
 
 .App-footer {

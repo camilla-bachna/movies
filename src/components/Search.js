@@ -33,7 +33,7 @@ function Search(props) {
           name="movieName"
           type="text"
           value={props.movieName}
-          placeholder="Escribe el nombre de la película"
+          placeholder="Nombre de la película"
           onChange={handleSearch}
         />
       </form>

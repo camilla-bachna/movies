@@ -1,20 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { db } from './Firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 function Form() {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [relatedMovies, setRelatedMovies] = useState('');
+  const [dataToShow, setData] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    db.collection('movies')
-      .add({
-        movieTitle: movieTitle,
-        movieDescription: movieDescription,
-        relatedMovies: relatedMovies,
-      })
+  // add movies
+
+  const ref = db.collection('movies');
+
+  function getMovies() {
+    ref.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setData(items);
+    });
+  }
+
+  useEffect(() => {
+    getMovies();
+    // eslint-disable-next-line
+  }, []);
+
+  // add movie function
+
+  function addMovie(newMovie) {
+    ref
+      .doc(newMovie.id)
+      .set(newMovie)
       .then(() => {
         alert('La película se guardó');
       })
@@ -25,12 +44,29 @@ function Form() {
     setMovieTitle('');
     setMovieDescription('');
     setRelatedMovies('');
+  }
+
+  /* preventDefault for form */
+
+  const handleSubmitForm = (event) => {
+    event.preventDefault();
   };
 
   return (
     <>
       <p>Aqui puedes añadir cualquier película</p>
-      <form className="form" onSubmit={handleSubmit}>
+      <form
+        className="form"
+        onSubmit={handleSubmitForm}
+        onSubmit={() =>
+          addMovie({
+            id: uuidv4(),
+            movieTitle: movieTitle,
+            movieDescription: movieDescription,
+            relatedMovies: relatedMovies,
+          })
+        }
+      >
         <label className="form-label" htmlFor="movieTitle">
           Título de la película:
         </label>

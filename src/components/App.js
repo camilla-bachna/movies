@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import '../stylesheets/App.css';
 import Form from './Form';
 import Landing from './Landing';
@@ -25,6 +25,7 @@ function App() {
         const data = [];
         querySnapshot.forEach((doc) => {
           data.push({
+            id: doc.data().id,
             title: doc.data().movieTitle,
             description: doc.data().movieDescription,
             relatedMovies: doc.data().relatedMovies,
@@ -61,12 +62,34 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Pagina para cargar/modificar una película</h1>
+        <h1 className="App-heading">
+          Pagina para cargar/modificar una película
+        </h1>
+        <nav className="navigation">
+          <ul className="navigation__list">
+            <li className="navigation__list--item">
+              <Link to="/addMovie">
+                <span className="navigation__list--button">
+                  Añade una película
+                </span>
+              </Link>
+            </li>
+            <li className="navigation__list--item"></li>
+            <li className="navigation__list--item">
+              <Link to="/showMovie">
+                <span className="navigation__list--button">
+                  Editar o eliminar las películas
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </header>
       <main className="App-main">
         <Switch>
           <Route exact path="/">
             <Landing />
+
             <Search
               handleSearchMovie={handleSearchMovie}
               movieName={movieName}
@@ -79,7 +102,7 @@ function App() {
             />
           </Route>
           <Route path="/addMovie">
-            <Form />
+            <Form dataToShow={currentMovie} />
           </Route>
           <Route path="/showMovie">
             <ShowMovies dataToShow={currentMovie} />
@@ -88,6 +111,9 @@ function App() {
               totalMovies={searchMovies.length}
               paginate={paginate}
             />
+            <Link to="/" className="link">
+              <h4 className="form-link">Volver a la página principal</h4>
+            </Link>
           </Route>
         </Switch>
       </main>
