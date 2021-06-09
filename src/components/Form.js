@@ -29,6 +29,7 @@ function Form() {
 
   return (
     <>
+      <p>Aqui puedes añadir cualquier película</p>
       <form className="form" onSubmit={handleSubmit}>
         <label className="form-label" htmlFor="movieTitle">
           Título de la película:

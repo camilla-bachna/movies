@@ -1,30 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { db } from './Firebase';
 
-function ShowMovies() {
-  const [dataToShow, setData] = useState([]);
-  // Fetch the data from firebase when the commponent is mounted
-  useEffect(() => {
-    const unsubscribe = db
-      .collection('movies')
-      .onSnapshot(function (querySnapshot) {
-        const data = [];
-        querySnapshot.forEach((doc) => {
-          data.push({
-            title: doc.data().movieTitle,
-            description: doc.data().movieDescription,
-            relatedMovies: doc.data().relatedMovies,
-          });
-        });
-        setData(data);
-      });
-
-    // Cleanup function
-    return () => unsubscribe();
-  }, []);
-
-  const moviesToShow = dataToShow.map((data) => {
+function ShowMovies(props) {
+  const moviesToShow = props.dataToShow.map((data) => {
     return (
       <li className="container-list">
         <h3 className="container-heading"> {data.title}</h3>

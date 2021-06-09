@@ -158,6 +158,30 @@ a:visited {
   font-size: 18px;
 }
 
+.pagination-container {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+
+.pagination-list {
+  font-size: 13px;
+  width: 10px;
+  height: 10px;
+  background-color: aqua;
+  padding: 10px;
+  margin: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.pagination-link {
+  color: red;
+}
+
 .App-footer {
   background-color: #282c34;
   height: 5vh;
