@@ -11,9 +11,6 @@ function ShowMovies() {
       .onSnapshot(function (querySnapshot) {
         const data = [];
         querySnapshot.forEach((doc) => {
-          console.log('Título : ', doc.data().movieTitle);
-          console.log('Descripción : ', doc.data().movieDescription);
-          console.log('Películas relacionadas : ', doc.data().relatedMovies);
           data.push({
             title: doc.data().movieTitle,
             description: doc.data().movieDescription,
@@ -45,7 +42,7 @@ function ShowMovies() {
       <h3>
         Aqui puedes ver todos los pelícilas añadidas y editarlos o eliminarlos
       </h3>
-      <div className="container">{moviesToShow}</div>
+      <ul className="container">{moviesToShow}</ul>
       <Link to="/" className="link">
         <h4 className="form-link">Volver a la página principal</h4>
       </Link>

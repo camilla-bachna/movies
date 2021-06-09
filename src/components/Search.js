@@ -1,7 +1,6 @@
 function Search(props) {
   const handleSearch = (event) => {
     props.handleSearchMovie(event.target.name, event.target.value);
-    console.log(event.target.name);
   };
 
   /* preventDefault for form */
@@ -10,22 +9,36 @@ function Search(props) {
     event.preventDefault();
   };
 
-  return (
-    <form className="form" onSubmit={handleSubmit}>
-      <label className="form-label" htmlFor="movieSearch">
-        Busca una película:
-      </label>
-      <input
-        className="form-input"
-        id="movieSearch"
-        type="text"
-        onChange={handleSearch}
-      />
+  const searchedMovies = props.searchMovies.map((movie) => {
+    return (
+      <li className="container-list">
+        <h3 className="container-heading"> {movie.title}</h3>
+        <p className="container-paragraph">{movie.description}</p>
+        <span className="container-relatedMovies">
+          Películas relacionadas: {movie.relatedMovies}
+        </span>
+      </li>
+    );
+  });
 
-      <button className="form-button" type="submit">
-        Busca
-      </button>
-    </form>
+  return (
+    <>
+      <form className="form" onSubmit={handleSubmit}>
+        <label className="form-label" htmlFor="movieSearch">
+          Busca una película:
+        </label>
+        <input
+          className="form-input"
+          id="movieSearch"
+          name="movieName"
+          type="text"
+          value={props.movieName}
+          placeholder="Escribe el nombre de la película"
+          onChange={handleSearch}
+        />
+      </form>
+      <ul className="container">{searchedMovies}</ul>
+    </>
   );
 }
 
