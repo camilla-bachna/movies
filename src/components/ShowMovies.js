@@ -1,33 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { db } from './Firebase';
 
-function ShowMovies() {
-  const [dataToShow, setData] = useState([]);
-  // Fetch the data from firebase when the commponent is mounted
-  useEffect(() => {
-    const unsubscribe = db
-      .collection('movies')
-      .onSnapshot(function (querySnapshot) {
-        const data = [];
-        querySnapshot.forEach((doc) => {
-          console.log('Título : ', doc.data().movieTitle);
-          console.log('Descripción : ', doc.data().movieDescription);
-          console.log('Películas relacionadas : ', doc.data().relatedMovies);
-          data.push({
-            title: doc.data().movieTitle,
-            description: doc.data().movieDescription,
-            relatedMovies: doc.data().relatedMovies,
-          });
-        });
-        setData(data);
-      });
-
-    // Cleanup function
-    return () => unsubscribe();
-  }, []);
-
-  const moviesToShow = dataToShow.map((data) => {
+function ShowMovies(props) {
+  const moviesToShow = props.dataToShow.map((data) => {
     return (
       <li className="container-list">
         <h3 className="container-heading"> {data.title}</h3>
@@ -45,7 +19,7 @@ function ShowMovies() {
       <h3>
         Aqui puedes ver todos los pelícilas añadidas y editarlos o eliminarlos
       </h3>
-      <div className="container">{moviesToShow}</div>
+      <ul className="container">{moviesToShow}</ul>
       <Link to="/" className="link">
         <h4 className="form-link">Volver a la página principal</h4>
       </Link>

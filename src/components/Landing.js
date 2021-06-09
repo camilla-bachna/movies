@@ -4,13 +4,15 @@ function Landing() {
   return (
     <div>
       <h2> Bienvenido! </h2>
-      <p>Puedes añadir, editar o eliminar películas e información detallada</p>
+      <p>
+        Puedes añadir, editar o eliminar películas y su información detallada
+      </p>
       <Link to="/addMovie">
         <button className="landing-button-add">Añade una película</button>
       </Link>
       <Link to="/showMovie">
         <button className="landing-button-show">
-          Mostrar todas las películas
+          Editar o eliminar las películas
         </button>
       </Link>
     </div>
