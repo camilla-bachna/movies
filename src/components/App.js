@@ -10,6 +10,7 @@ import Pagination from './Pagination';
 import { db } from './Firebase';
 import MovieDetails from './MovieDetails';
 import LastFiveMovies from './LastFiveMovies';
+import FormUpdate from './FormUpdate';
 
 function App() {
   const [movieName, setmovieName] = useState('');
@@ -61,7 +62,7 @@ function App() {
   //change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // route
+  // route movie details
 
   const renderDetail = (routerProps) => {
     const routerMovieId = routerProps.match.params.id;
@@ -72,6 +73,20 @@ function App() {
 
     if (movieFound) {
       return <MovieDetails movieFound={movieFound}></MovieDetails>;
+    }
+  };
+
+  // route update movie
+
+  const updateMovie = (routerProps) => {
+    const routerMovieId = routerProps.match.params.id;
+
+    const movieFound = dataToShow.find((movie) => movie.id === routerMovieId);
+
+    // paint details of movies
+
+    if (movieFound) {
+      return <FormUpdate movieFound={movieFound} />;
     }
   };
 
@@ -105,29 +120,27 @@ function App() {
         <Switch>
           <Route exact path="/">
             <LastFiveMovies dataToShow={dataToShow} />
-            <Landing />
-            <Search
-              handleSearchMovie={handleSearchMovie}
-              movieName={movieName}
-              searchMovies={currentMovie}
-            />
-            <Pagination
-              moviePerPage={moviePerPage}
-              totalMovies={searchMovies.length}
-              paginate={paginate}
-            />
+            <div className="landing">
+              <Landing />
+              <Search
+                handleSearchMovie={handleSearchMovie}
+                movieName={movieName}
+                searchMovies={currentMovie}
+              />
+              <Pagination
+                moviePerPage={moviePerPage}
+                totalMovies={searchMovies.length}
+                paginate={paginate}
+              />
+            </div>
           </Route>
           <Route path="/movie/:id" render={renderDetail}></Route>
           <Route path="/addMovie">
             <Form dataToShow={currentMovie} />
           </Route>
+          <Route path="/updateMovie/:id" render={updateMovie}></Route>
           <Route path="/showMovie">
-            <ShowMovies dataToShow={currentMovie} />
-            <Pagination
-              moviePerPage={moviePerPage}
-              totalMovies={searchMovies.length}
-              paginate={paginate}
-            />
+            <ShowMovies dataToShow={dataToShow} />
             <Link to="/" className="link">
               <h4 className="form-link">Volver a la página principal</h4>
             </Link>

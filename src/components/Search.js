@@ -14,7 +14,7 @@ function Search(props) {
   const searchedMovies = props.searchMovies.map((movie) => {
     /* console.log(movie.id); */
     return (
-      <li className="container-list-search">
+      <li key={movie.id} className="container-list-search">
         <h3 className="container-heading"> {movie.title}</h3>
         <Link to={`/movie/${movie.id}`}>
           <button className="container-search-button">
