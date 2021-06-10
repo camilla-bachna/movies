@@ -14,16 +14,13 @@ function Search(props) {
   const searchedMovies = props.searchMovies.map((movie) => {
     /* console.log(movie.id); */
     return (
-      <li className="container-list">
+      <li key={movie.id} className="container-list-search">
         <h3 className="container-heading"> {movie.title}</h3>
         <Link to={`/movie/${movie.id}`}>
-          <button className="container-button">
+          <button className="container-search-button">
             Para más detalles, pulse aquí
           </button>
         </Link>
-        <span className="container-relatedMovies">
-          Películas relacionadas: {movie.relatedMovies}
-        </span>
       </li>
     );
   });
@@ -31,7 +28,7 @@ function Search(props) {
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <label className="form-label" htmlFor="movieSearch">
+        <label className="form-label-search" htmlFor="movieSearch">
           Busca una película:
         </label>
         <input
@@ -44,7 +41,7 @@ function Search(props) {
           onChange={handleSearch}
         />
       </form>
-      <ul className="container">{searchedMovies}</ul>
+      <ul className="container-search">{searchedMovies}</ul>
     </>
   );
 }
