@@ -158,6 +158,17 @@ a:visited {
   font-weight: bold;
 }
 
+.container-button {
+  background-color: #282c34;
+  color: white;
+  width: 170px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .container-paragraph {
   font-size: 18px;
 }

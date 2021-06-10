@@ -8,6 +8,7 @@ import Search from './Search';
 import ShowMovies from './ShowMovies';
 import Pagination from './Pagination';
 import { db } from './Firebase';
+import MovieDetails from './MovieDetails';
 
 function App() {
   const [movieName, setmovieName] = useState('');
@@ -54,10 +55,24 @@ function App() {
   const indexOfLastMovie = currentPage * moviePerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviePerPage;
   const currentMovie = searchMovies.slice(indexOfFirstMovie, indexOfLastMovie);
-  console.log(searchMovies);
+  /* console.log(searchMovies); */
 
   //change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  /* route */
+
+  const renderDetail = (routerProps) => {
+    const routerMovieId = routerProps.match.params.id;
+
+    const movieFound = dataToShow.find((movie) => movie.id === routerMovieId);
+
+    /* paint details of movies */
+
+    if (movieFound) {
+      return <MovieDetails movieFound={movieFound}></MovieDetails>;
+    }
+  };
 
   return (
     <div className="App">
@@ -101,6 +116,7 @@ function App() {
               paginate={paginate}
             />
           </Route>
+          <Route path="/movie/:id" render={renderDetail}></Route>
           <Route path="/addMovie">
             <Form dataToShow={currentMovie} />
           </Route>
