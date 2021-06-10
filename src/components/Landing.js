@@ -1,7 +1,7 @@
 function Landing() {
   return (
     <div>
-      <p>
+      <p className="landing-paragraph">
         Puedes añadir, editar o eliminar películas y su información detallada
       </p>
     </div>

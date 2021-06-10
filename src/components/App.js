@@ -9,6 +9,7 @@ import ShowMovies from './ShowMovies';
 import Pagination from './Pagination';
 import { db } from './Firebase';
 import MovieDetails from './MovieDetails';
+import LastFiveMovies from './LastFiveMovies';
 
 function App() {
   const [movieName, setmovieName] = useState('');
@@ -39,7 +40,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  /* search movie */
+  // search movie
 
   const handleSearchMovie = (inputKey, inputValue) => {
     if (inputKey === 'movieName') {
@@ -51,7 +52,7 @@ function App() {
     return movieSearched.title.toLowerCase().includes(movieName.toLowerCase());
   });
 
-  //Pagination
+  // Pagination
   const indexOfLastMovie = currentPage * moviePerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviePerPage;
   const currentMovie = searchMovies.slice(indexOfFirstMovie, indexOfLastMovie);
@@ -60,14 +61,14 @@ function App() {
   //change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  /* route */
+  // route
 
   const renderDetail = (routerProps) => {
     const routerMovieId = routerProps.match.params.id;
 
     const movieFound = dataToShow.find((movie) => movie.id === routerMovieId);
 
-    /* paint details of movies */
+    // paint details of movies
 
     if (movieFound) {
       return <MovieDetails movieFound={movieFound}></MovieDetails>;
@@ -103,8 +104,8 @@ function App() {
       <main className="App-main">
         <Switch>
           <Route exact path="/">
+            <LastFiveMovies dataToShow={dataToShow} />
             <Landing />
-
             <Search
               handleSearchMovie={handleSearchMovie}
               movieName={movieName}
