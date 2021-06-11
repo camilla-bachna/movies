@@ -97,6 +97,14 @@
   cursor: pointer;
 }
 
+.form-image {
+  margin: 20px;
+  width: 200px;
+}
+
+.form-input-image {
+  display: none;
+}
 .form-button {
   background-color: #282c34;
   color: white;
@@ -188,6 +196,21 @@ a:visited {
   border-radius: 16px;
 }
 
+.container-moviedetails-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  width: 250px;
+  height: 450px;
+  background-color: #8d99ae;
+  padding: 10px;
+  margin: 40px;
+  border-radius: 16px;
+}
+
 .container-heading {
   font-size: 22px;
   font-weight: bold;
@@ -207,6 +230,14 @@ a:visited {
 .container-paragraph {
   font-size: 18px;
   margin: 10px;
+}
+
+.container-image {
+  width: 200px;
+}
+.container-moviedetails-image {
+  width: 200px;
+  margin: 5px;
 }
 
 .container-relatedMovies {

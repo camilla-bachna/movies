@@ -26,7 +26,7 @@ function FormUpdate(props) {
       .catch((error) => {
         alert(error.message);
       });
-    console.log(updatedMovie.id);
+    /* console.log(updatedMovie.id); */
   }
 
   /* preventDefault for form */

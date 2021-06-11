@@ -11,10 +11,12 @@ import { db } from './Firebase';
 import MovieDetails from './MovieDetails';
 import LastFiveMovies from './LastFiveMovies';
 import FormUpdate from './FormUpdate';
+import UploadImage from './UploadImage';
 
 function App() {
   const [movieName, setmovieName] = useState('');
   const [dataToShow, setData] = useState([]);
+  const [cover, setCover] = useState('');
 
   //Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +26,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = db
       .collection('movies')
+      .orderBy('createdAt')
       .onSnapshot(function (querySnapshot) {
         const data = [];
         querySnapshot.forEach((doc) => {
@@ -31,6 +34,7 @@ function App() {
             id: doc.data().id,
             title: doc.data().movieTitle,
             description: doc.data().movieDescription,
+            cover: doc.data().cover,
             relatedMovies: doc.data().relatedMovies,
           });
         });
@@ -41,6 +45,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  console.log(dataToShow);
   // search movie
 
   const handleSearchMovie = (inputKey, inputValue) => {
@@ -72,7 +77,9 @@ function App() {
     // paint details of movies
 
     if (movieFound) {
-      return <MovieDetails movieFound={movieFound}></MovieDetails>;
+      return (
+        <MovieDetails movieFound={movieFound} cover={cover}></MovieDetails>
+      );
     }
   };
 
@@ -136,7 +143,11 @@ function App() {
           </Route>
           <Route path="/movie/:id" render={renderDetail}></Route>
           <Route path="/addMovie">
-            <Form dataToShow={currentMovie} />
+            <Form dataToShow={dataToShow} cover={cover} setCover={setCover} />
+            <UploadImage cover={cover} setCover={setCover} />
+            <Link to="/" className="link">
+              <h4 className="form-link">Volver a la página principal</h4>
+            </Link>
           </Route>
           <Route path="/updateMovie/:id" render={updateMovie}></Route>
           <Route path="/showMovie">

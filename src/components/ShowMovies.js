@@ -2,24 +2,6 @@ import { db } from './Firebase';
 import { Link } from 'react-router-dom';
 
 function ShowMovies(props) {
-  /* const handleClick = (event) => {
-    const clickedMovieId = event.currentTarget.id;
-
-    const movieFound = props.dataToShow.find(
-      (movie) => movie.id === clickedMovieId
-    );
-
-    console.log(movieFound);
-
-    if (movieFound) {
-      return console.log('Hola');
-
-      {
-        <FormUpdate movieFound={movieFound} />
-      }
-    }
-  }; */
-
   const moviesToShow = props.dataToShow.map((data) => {
     return (
       <li key={data.id} id={data.id} className="container-list">

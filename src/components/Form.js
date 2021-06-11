@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { db } from './Firebase';
+import firebase from 'firebase';
+
 import { v4 as uuidv4 } from 'uuid';
 
-function Form() {
+function Form(props) {
+  const timestamp = firebase.firestore.FieldValue.serverTimestamp;
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
   const [relatedMovies, setRelatedMovies] = useState('');
-  const [dataToShow, setData] = useState([]);
+  const [dataShow, setData] = useState([]);
+  const cover = props.cover;
+  const setCover = props.setCover;
 
   // add movies
 
@@ -43,9 +47,43 @@ function Form() {
 
     setMovieTitle('');
     setMovieDescription('');
+    setCover('');
     setRelatedMovies('');
   }
 
+  // add related movie by clicking on one
+
+  /*const clickedMovie = (event) => {
+    const clickedMovieId = event.currentTarget.id;
+
+    const movieFound = props.dataToShow.find(
+      (movie) => movie.id === clickedMovieId
+    );
+
+    if (movieFound) {
+      return <span>{movieFound.id}</span>;
+    }
+  };
+
+  const moviesToShow = props.dataToShow.map((data) => {
+    return (
+      <>
+        <li
+          key={data.id}
+          id={data.id}
+          className="container-list"
+          onClick={clickedMovie}
+        >
+          <h3 className="container-heading"> {data.title}</h3>
+          <p className="container-paragraph">{data.description}</p>
+          <span className="container-relatedMovies">
+            Películas relacionadas: {data.relatedMovies}
+          </span>
+        </li>
+      </>
+    );
+  });
+ */
   /* preventDefault for form */
 
   const handleSubmitForm = (event) => {
@@ -63,7 +101,9 @@ function Form() {
             id: uuidv4(),
             movieTitle: movieTitle,
             movieDescription: movieDescription,
+            cover: cover,
             relatedMovies: relatedMovies,
+            createdAt: timestamp(),
           })
         }
       >
@@ -85,7 +125,7 @@ function Form() {
         <textarea
           className="form-input"
           id="movieDescription"
-          type="movieDescription"
+          type="text"
           placeholder="Descripción"
           value={movieDescription}
           onChange={(ev) => setMovieDescription(ev.target.value)}
@@ -107,9 +147,7 @@ function Form() {
           Añade la película
         </button>
       </form>
-      <Link to="/" className="link">
-        <h4 className="form-link">Volver a la página principal</h4>
-      </Link>
+      {/* <div>{clickedMovie}</div> */}
     </>
   );
 }

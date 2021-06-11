@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 function MovieDetails(props) {
   return (
     <>
-      <li className="container-list" key={props.movieFound.id}>
+      <li className="container-moviedetails-list" key={props.movieFound.id}>
+        <img
+          src={props.movieFound.cover}
+          className="container-moviedetails-image"
+        ></img>
         <h3 className="container-heading"> {props.movieFound.title}</h3>
         <p className="container-paragraph">{props.movieFound.description}</p>
         <span className="container-relatedMovies">
