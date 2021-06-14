@@ -196,6 +196,10 @@ a:visited {
   border-radius: 16px;
 }
 
+.container-list-clicked {
+  background-color: #5f6775;
+}
+
 .container-moviedetails-list {
   list-style: none;
   display: flex;

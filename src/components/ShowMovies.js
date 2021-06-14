@@ -7,7 +7,6 @@ function ShowMovies(props) {
       <li key={data.id} id={data.id} className="container-list">
         <h3 className="container-heading"> {data.title}</h3>
         <p className="container-paragraph">{data.description}</p>
-        <p>{data.id}</p>
         <span className="container-relatedMovies">
           Películas relacionadas: {data.relatedMovies}
         </span>

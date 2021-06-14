@@ -29,7 +29,6 @@ function Form(props) {
 
   useEffect(() => {
     getMovies();
-    // eslint-disable-next-line
   }, []);
 
   // add movie function
@@ -51,39 +50,6 @@ function Form(props) {
     setRelatedMovies('');
   }
 
-  // add related movie by clicking on one
-
-  /*const clickedMovie = (event) => {
-    const clickedMovieId = event.currentTarget.id;
-
-    const movieFound = props.dataToShow.find(
-      (movie) => movie.id === clickedMovieId
-    );
-
-    if (movieFound) {
-      return <span>{movieFound.id}</span>;
-    }
-  };
-
-  const moviesToShow = props.dataToShow.map((data) => {
-    return (
-      <>
-        <li
-          key={data.id}
-          id={data.id}
-          className="container-list"
-          onClick={clickedMovie}
-        >
-          <h3 className="container-heading"> {data.title}</h3>
-          <p className="container-paragraph">{data.description}</p>
-          <span className="container-relatedMovies">
-            Películas relacionadas: {data.relatedMovies}
-          </span>
-        </li>
-      </>
-    );
-  });
- */
   /* preventDefault for form */
 
   const handleSubmitForm = (event) => {
@@ -147,7 +113,6 @@ function Form(props) {
           Añade la película
         </button>
       </form>
-      {/* <div>{clickedMovie}</div> */}
     </>
   );
 }

@@ -12,13 +12,14 @@ import MovieDetails from './MovieDetails';
 import LastFiveMovies from './LastFiveMovies';
 import FormUpdate from './FormUpdate';
 import UploadImage from './UploadImage';
+import RelatedMovies from './RelatedMovies';
 
 function App() {
   const [movieName, setmovieName] = useState('');
   const [dataToShow, setData] = useState([]);
   const [cover, setCover] = useState('');
 
-  //Pagination
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [moviePerPage] = useState(10);
 
@@ -45,7 +46,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  console.log(dataToShow);
+  /* console.log(dataToShow); */
   // search movie
 
   const handleSearchMovie = (inputKey, inputValue) => {
@@ -64,7 +65,7 @@ function App() {
   const currentMovie = searchMovies.slice(indexOfFirstMovie, indexOfLastMovie);
   /* console.log(searchMovies); */
 
-  //change page
+  // change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // route movie details
@@ -145,6 +146,7 @@ function App() {
           <Route path="/addMovie">
             <Form dataToShow={dataToShow} cover={cover} setCover={setCover} />
             <UploadImage cover={cover} setCover={setCover} />
+            <RelatedMovies dataToShow={dataToShow} />
             <Link to="/" className="link">
               <h4 className="form-link">Volver a la página principal</h4>
             </Link>
