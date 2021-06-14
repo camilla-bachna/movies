@@ -8,10 +8,11 @@
 
 .main-container {
   text-align: center;
+  background-color: #e0fbfc;
 }
 
 .header {
-  background-color: #282c34;
+  background-color: #293241;
   height: 10vh;
   width: 100%;
   display: flex;
@@ -20,6 +21,11 @@
   justify-content: center;
   font-size: 14px;
   color: white;
+  border-bottom: 3px solid #ee6c4d;
+}
+
+.heading {
+  margin: 15px;
 }
 
 .main {
@@ -30,6 +36,9 @@
   justify-content: center;
   font-size: 20px;
   color: #282c34;
+  background-color: #e0fbfc;
+  /*  position: relative;
+  bottom: 5vh; */
 }
 
 .landing-paragraph {
@@ -49,8 +58,8 @@
 
 .navigation__list--button {
   display: inline-block;
-  background-color: #282c34;
-  color: white;
+  background-color: #293241;
+  color: #ee6c4d;
   margin-top: 15px;
   font-size: 21px;
   font-weight: bold;
@@ -111,7 +120,9 @@
 }
 
 .form-button {
-  background-color: #282c34;
+  background-color: #293241;
+  border: 2px solid #ee6c4d;
+  border-radius: 4px;
   color: white;
   width: 190px;
   height: 40px;
@@ -123,8 +134,10 @@
 }
 
 .form-button-addMovie {
-  background-color: #282c34;
+  background-color: #293241;
   color: white;
+  border: 2px solid #ee6c4d;
+  border-radius: 4px;
   width: 290px;
   height: 80px;
   margin: 20px;
@@ -137,10 +150,10 @@
 .form-link {
   display: block;
   background-color: #282c34;
-  color: white;
+  color: #ee6c4d;
   width: 190px;
   height: 50px;
-  margin: 15px;
+  margin: 15px 15px 70px 15px;
   border-radius: 6px;
   font-size: 18px;
   font-weight: bold;
@@ -182,8 +195,8 @@ a:visited {
   justify-content: center;
   align-items: center;
   width: 180px;
-  height: 290px;
-  background-color: #8d99ae;
+  height: 250px;
+  background-color: #98c1d9;
   padding: 10px;
   margin: 10px 15px;
   border-radius: 16px;
@@ -206,16 +219,17 @@ a:visited {
   justify-content: center;
   align-items: center;
   font-size: 13px;
-  width: 200px;
-  height: 290px;
-  background-color: #8d99ae;
+  width: 230px;
+  height: 330px;
+  background-color: #98c1d9;
   padding: 10px;
   margin: 10px 15px;
   border-radius: 16px;
 }
 
 .container-list-clicked {
-  background-color: #5f6775;
+  background-color: #3d5a80;
+  color: white;
 }
 
 .container-moviedetails-list {
@@ -227,7 +241,7 @@ a:visited {
   font-size: 13px;
   width: 250px;
   height: 450px;
-  background-color: #8d99ae;
+  background-color: #98c1d9;
   padding: 10px;
   margin: 40px;
   border-radius: 16px;
@@ -239,8 +253,10 @@ a:visited {
 }
 
 .container-search-button {
-  background-color: #282c34;
+  background-color: #293241;
   color: white;
+  border: 2px solid #ee6c4d;
+  border-radius: 4px;
   width: 140px;
   height: 40px;
   margin: 10px;
@@ -308,7 +324,7 @@ a:visited {
   position: fixed;
   bottom: 0;
   z-index: 1;
-  background-color: #282c34;
+  background-color: #293241;
   height: 5vh;
   width: 100%;
   display: flex;
@@ -317,4 +333,5 @@ a:visited {
   justify-content: center;
   font-size: 14px;
   color: white;
+  border-top: 3px solid #ee6c4d;
 }

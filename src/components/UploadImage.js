@@ -28,7 +28,7 @@ function UploadImage(props) {
           Imagen de la película:
         </label>
         <input
-          className="form-input"
+          className="form-input-hidden"
           id="movieImage"
           type="text"
           placeholder="Imagen"

@@ -9,9 +9,6 @@ function ShowMovies(props) {
         <p className="container-paragraph">
           {data.description.substring(0, 110) + '...'}
         </p>
-        <span className="container-relatedMovies">
-          Películas relacionadas: {data.relatedMovies}
-        </span>
         <button
           onClick={() => {
             if (window.confirm('¿Seguro que quieres borrar esta película?')) {

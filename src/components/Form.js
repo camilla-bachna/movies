@@ -127,6 +127,9 @@ function Form(props) {
           onChange={(ev) => setRelatedMoviesArray(ev.target.value)}
         />
         <span>{relatedMoviesList}</span>
+        <button className="form-button-addMovie" type="submit">
+          Añade la película
+        </button>
       </form>
     </>
   );

@@ -132,11 +132,17 @@ function App() {
             <li className="navigation__list--item">
               <Link to="/addMovie">
                 <span className="navigation__list--button">
-                  Añade una película
+                  Añadir una película
                 </span>
               </Link>
             </li>
-            <li className="navigation__list--item"></li>
+            <li className="navigation__list--item">
+              <Link to="/">
+                <span className="navigation__list--button">
+                  Volver a la página principal
+                </span>
+              </Link>
+            </li>
             <li className="navigation__list--item">
               <Link to="/showMovie">
                 <span className="navigation__list--button">
@@ -180,9 +186,7 @@ function App() {
               relatedMoviesArray={relatedMoviesArray}
               setRelatedMoviesArray={setRelatedMoviesArray}
             />
-            <button className="form-button-addMovie" type="submit">
-              Añade la película
-            </button>
+
             <Link to="/" className="link">
               <h4 className="form-link">Volver a la página principal</h4>
             </Link>
@@ -197,7 +201,7 @@ function App() {
         </Switch>
       </main>
       <footer className="footer">
-        <small>Camilla @2021</small>
+        <small>Camilla &copy; 2021</small>
       </footer>
     </div>
   );

@@ -18,7 +18,7 @@ function LastFiveMovies(props) {
 
   return (
     <ul className="container">
-      <h3>Las 5 últimas películas añadidas</h3>
+      <h3 className="heading">Las 5 últimas películas añadidas</h3>
       <Carousel>{slider}</Carousel>
     </ul>
   );

@@ -25,7 +25,11 @@ function FormUpdate(props) {
       .catch((error) => {
         alert(error.message);
       });
-    console.log(updatedMovie);
+
+    setMovieTitle('');
+    setMovieDescription('');
+    setCover('');
+    setRelatedMoviesArray([]);
   }
 
   // get movie id from array of related movies
