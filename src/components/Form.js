@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from './Firebase';
 import firebase from 'firebase';
-
 import { v4 as uuidv4 } from 'uuid';
 
 function Form(props) {
@@ -60,7 +59,7 @@ function Form(props) {
   // print selected movies
 
   const relatedMoviesList = relatedMoviesArray.map((relatedMovie) => {
-    return <span>{`${relatedMovie.title}, `}</span>;
+    return <li className="relatedMovie-list">{`${relatedMovie.title}, `}</li>;
   });
 
   // preventDefault for form
@@ -126,7 +125,7 @@ function Form(props) {
           value={relatedMovieId}
           onChange={(ev) => setRelatedMoviesArray(ev.target.value)}
         />
-        <span>{relatedMoviesList}</span>
+        <ul>{relatedMoviesList}</ul>
         <button className="form-button-addMovie" type="submit">
           Añade la película
         </button>

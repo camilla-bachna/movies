@@ -183,7 +183,7 @@ a:visited {
   color: #2b2d42;
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -194,7 +194,7 @@ a:visited {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 180px;
+  width: 130px;
   height: 250px;
   background-color: #98c1d9;
   padding: 10px;
@@ -234,7 +234,7 @@ a:visited {
   justify-content: center;
   align-items: center;
   font-size: 13px;
-  width: 230px;
+  width: 200px;
   height: 330px;
   background-color: #98c1d9;
   padding: 10px;
@@ -267,13 +267,18 @@ a:visited {
   font-weight: bold;
 }
 
+.container-heading-search {
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .container-search-button {
   background-color: #293241;
   color: white;
   border: 2px solid #ee6c4d;
   border-radius: 4px;
-  width: 140px;
-  height: 40px;
+  width: 100px;
+  height: 60px;
   margin: 10px;
   border-radius: 6px;
   font-size: 16px;
@@ -302,6 +307,10 @@ a:visited {
   margin: 5px;
 }
 
+.relatedMovie-list {
+  display: inline-block;
+}
+
 .container-delete {
   font-size: 14px;
   margin: 5px;
@@ -319,6 +328,7 @@ a:visited {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 45px;
 }
 
 .pagination-list {

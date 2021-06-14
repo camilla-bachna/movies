@@ -1,18 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import '../stylesheets/App.css';
+import { db } from './Firebase';
 import Form from './Form';
 import Landing from './Landing';
 import Search from './Search';
 import ShowMovies from './ShowMovies';
 import Pagination from './Pagination';
-import { db } from './Firebase';
 import MovieDetails from './MovieDetails';
 import LastFiveMovies from './LastFiveMovies';
 import FormUpdate from './FormUpdate';
 import UploadImage from './UploadImage';
 import RelatedMovies from './RelatedMovies';
+import '../stylesheets/App.css';
 
 function App() {
   const [movieName, setmovieName] = useState('');
@@ -21,10 +21,12 @@ function App() {
   const [relatedMoviesArray, setRelatedMoviesArray] = useState([]);
 
   // Pagination
+
   const [currentPage, setCurrentPage] = useState(1);
   const [moviePerPage] = useState(10);
 
-  // Fetch the data from firebase when the commponent is mounted
+  // Fetch the data from firebase
+
   useEffect(() => {
     const unsubscribe = db
       .collection('movies')
@@ -44,10 +46,10 @@ function App() {
       });
 
     // Cleanup function
+
     return () => unsubscribe();
   }, []);
 
-  /*  console.log(dataToShow); */
   // search movie
 
   const handleSearchMovie = (inputKey, inputValue) => {
@@ -61,12 +63,13 @@ function App() {
   });
 
   // Pagination
+
   const indexOfLastMovie = currentPage * moviePerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviePerPage;
   const currentMovie = searchMovies.slice(indexOfFirstMovie, indexOfLastMovie);
-  /* console.log(searchMovies); */
 
   // change page
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // route movie details

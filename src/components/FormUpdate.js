@@ -41,7 +41,7 @@ function FormUpdate(props) {
   // print selected movies
 
   const relatedMoviesList = relatedMoviesArray.map((relatedMovie) => {
-    return <span>{`${relatedMovie.title}, `}</span>;
+    return <li className="relatedMovie-list">{`${relatedMovie.title}, `}</li>;
   });
 
   // preventDefault for form
@@ -100,7 +100,7 @@ function FormUpdate(props) {
           value={relatedMovieId}
           onChange={(ev) => setRelatedMoviesArray(ev.target.value)}
         />
-        <span>{relatedMoviesList}</span>
+        <ul>{relatedMoviesList}</ul>
         <button className="form-button-addMovie" type="submit">
           Modifica la película
         </button>

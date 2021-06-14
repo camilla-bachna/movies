@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 function MovieDetails(props) {
   const finalmovies = [];
   const relatedMovies = props.movieFound.tag.map((relatedMovie) => {
-    const finalrelatedMovies = props.dataToShow.map((finalrelatedMovie) => {
-      if (finalrelatedMovie.id === relatedMovie) {
-        finalmovies.push(finalrelatedMovie);
+    const finalRelatedMovies = props.dataToShow.map((finalRelatedMovie) => {
+      if (finalRelatedMovie.id === relatedMovie) {
+        finalmovies.push(finalRelatedMovie);
       }
     });
 

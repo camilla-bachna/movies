@@ -3,6 +3,7 @@ import Carousel from 'react-elastic-carousel';
 
 function LastFiveMovies(props) {
   // lastFiveMovies slider
+
   let lastFiveMovies = props.dataToShow.slice(
     Math.max(props.dataToShow.length - 5, 1)
   );
