@@ -14,7 +14,7 @@ function MovieDetails(props) {
 
   const finalMovie = finalmovies.map((finalMovie) => {
     return (
-      <li className="container-list">
+      <li className="container-list-movieDetails">
         <img src={finalMovie.cover} className="container-image"></img>
         <h3>{finalMovie.title}</h3>
       </li>
