@@ -6,9 +6,9 @@ El ejercicio consiste en desarrollar una página web en la que podemos añadir, 
 
 He usado
 
-- [Firebase] (https://firebase.google.com/docs/database/rest/save-data) para guardar datos y
+- [Firebase](https://firebase.google.com/docs/database/rest/save-data) para guardar datos y
 
-- [Cloudinary] (https://cloudinary.com/documentation/image_upload_api_reference) para subir los covers de las películas.
+- [Cloudinary](https://cloudinary.com/documentation/image_upload_api_reference) para subir los covers de las películas.
 
 ## Página principal
 
