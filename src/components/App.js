@@ -18,6 +18,7 @@ function App() {
   const [movieName, setmovieName] = useState('');
   const [dataToShow, setData] = useState([]);
   const [cover, setCover] = useState('');
+  const [relatedMoviesArray, setRelatedMoviesArray] = useState([]);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +37,7 @@ function App() {
             title: doc.data().movieTitle,
             description: doc.data().movieDescription,
             cover: doc.data().cover,
-            relatedMovies: doc.data().relatedMovies,
+            tag: doc.data().tag,
           });
         });
         setData(data);
@@ -46,7 +47,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  /* console.log(dataToShow); */
+  /*  console.log(dataToShow); */
   // search movie
 
   const handleSearchMovie = (inputKey, inputValue) => {
@@ -79,7 +80,11 @@ function App() {
 
     if (movieFound) {
       return (
-        <MovieDetails movieFound={movieFound} cover={cover}></MovieDetails>
+        <MovieDetails
+          movieFound={movieFound}
+          cover={cover}
+          dataToShow={dataToShow}
+        ></MovieDetails>
       );
     }
   };
@@ -94,16 +99,34 @@ function App() {
     // paint details of movies
 
     if (movieFound) {
-      return <FormUpdate movieFound={movieFound} />;
+      return (
+        <>
+          <FormUpdate
+            movieFound={movieFound}
+            cover={cover}
+            setCover={setCover}
+            relatedMoviesArray={relatedMoviesArray}
+            setRelatedMoviesArray={setRelatedMoviesArray}
+          />
+          <UploadImage cover={cover} setCover={setCover} />
+          <RelatedMovies
+            dataToShow={dataToShow}
+            relatedMoviesArray={relatedMoviesArray}
+            setRelatedMoviesArray={setRelatedMoviesArray}
+          />
+
+          <Link to="/showMovie" className="link">
+            <h4 className="form-link">Volver a ver todas las películas</h4>
+          </Link>
+        </>
+      );
     }
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="App-heading">
-          Pagina para cargar/modificar una película
-        </h1>
+    <div className="main-container">
+      <header className="header">
+        <h1>Pagina para cargar/modificar una película</h1>
         <nav className="navigation">
           <ul className="navigation__list">
             <li className="navigation__list--item">
@@ -124,7 +147,7 @@ function App() {
           </ul>
         </nav>
       </header>
-      <main className="App-main">
+      <main className="main">
         <Switch>
           <Route exact path="/">
             <LastFiveMovies dataToShow={dataToShow} />
@@ -144,9 +167,22 @@ function App() {
           </Route>
           <Route path="/movie/:id" render={renderDetail}></Route>
           <Route path="/addMovie">
-            <Form dataToShow={dataToShow} cover={cover} setCover={setCover} />
+            <Form
+              dataToShow={dataToShow}
+              cover={cover}
+              setCover={setCover}
+              relatedMoviesArray={relatedMoviesArray}
+              setRelatedMoviesArray={setRelatedMoviesArray}
+            />
             <UploadImage cover={cover} setCover={setCover} />
-            <RelatedMovies dataToShow={dataToShow} />
+            <RelatedMovies
+              dataToShow={dataToShow}
+              relatedMoviesArray={relatedMoviesArray}
+              setRelatedMoviesArray={setRelatedMoviesArray}
+            />
+            <button className="form-button-addMovie" type="submit">
+              Añade la película
+            </button>
             <Link to="/" className="link">
               <h4 className="form-link">Volver a la página principal</h4>
             </Link>
@@ -160,7 +196,7 @@ function App() {
           </Route>
         </Switch>
       </main>
-      <footer className="App-footer">
+      <footer className="footer">
         <small>Camilla @2021</small>
       </footer>
     </div>

@@ -6,7 +6,9 @@ function ShowMovies(props) {
     return (
       <li key={data.id} id={data.id} className="container-list">
         <h3 className="container-heading"> {data.title}</h3>
-        <p className="container-paragraph">{data.description}</p>
+        <p className="container-paragraph">
+          {data.description.substring(0, 110) + '...'}
+        </p>
         <span className="container-relatedMovies">
           Películas relacionadas: {data.relatedMovies}
         </span>
@@ -48,7 +50,7 @@ function ShowMovies(props) {
       <h3 className="showMovies-heading">
         Aqui puedes ver todos los pelícilas añadidas y editarlos o eliminarlos
       </h3>
-      <p>
+      <p className="form-paragraph">
         Pincha en el botón "Modificar" para seleccionar la película que quieres
         modificar. El formulario se rellenará automáticamente.
       </p>

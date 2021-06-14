@@ -8,10 +8,11 @@ function Form(props) {
   const timestamp = firebase.firestore.FieldValue.serverTimestamp;
   const [movieTitle, setMovieTitle] = useState('');
   const [movieDescription, setMovieDescription] = useState('');
-  const [relatedMovies, setRelatedMovies] = useState('');
   const [dataShow, setData] = useState([]);
   const cover = props.cover;
   const setCover = props.setCover;
+  const relatedMoviesArray = props.relatedMoviesArray;
+  const setRelatedMoviesArray = props.setRelatedMoviesArray;
 
   // add movies
 
@@ -47,10 +48,22 @@ function Form(props) {
     setMovieTitle('');
     setMovieDescription('');
     setCover('');
-    setRelatedMovies('');
+    setRelatedMoviesArray([]);
   }
 
-  /* preventDefault for form */
+  // get movie id from array of related movies
+
+  const relatedMovieId = relatedMoviesArray.map((relatedMovie) => {
+    return relatedMovie.id;
+  });
+
+  // print selected movies
+
+  const relatedMoviesList = relatedMoviesArray.map((relatedMovie) => {
+    return <span>{`${relatedMovie.title}, `}</span>;
+  });
+
+  // preventDefault for form
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -58,7 +71,12 @@ function Form(props) {
 
   return (
     <>
-      <p>Aqui puedes añadir cualquier película</p>
+      <p className="form-paragraph">Aqui puedes añadir cualquier película</p>
+      <small>
+        Por favor añade el título, la descripción, sube una imagen de la
+        película y seleccione las películas relacionadas de las películas
+        almacenadas. Al final pincha el botón "Añade la película".
+      </small>
       <form
         className="form"
         onSubmit={handleSubmitForm}
@@ -68,7 +86,7 @@ function Form(props) {
             movieTitle: movieTitle,
             movieDescription: movieDescription,
             cover: cover,
-            relatedMovies: relatedMovies,
+            tag: relatedMovieId,
             createdAt: timestamp(),
           })
         }
@@ -101,17 +119,14 @@ function Form(props) {
           Películas relacionadas:
         </label>
         <input
-          className="form-input"
+          className="form-input-hidden"
           id="relatedMovies"
           type="text"
           placeholder="Películas relacionadas"
-          value={relatedMovies}
-          onChange={(ev) => setRelatedMovies(ev.target.value)}
+          value={relatedMovieId}
+          onChange={(ev) => setRelatedMoviesArray(ev.target.value)}
         />
-
-        <button className="form-button" type="submit">
-          Añade la película
-        </button>
+        <span>{relatedMoviesList}</span>
       </form>
     </>
   );

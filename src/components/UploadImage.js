@@ -28,7 +28,7 @@ function UploadImage(props) {
           Imagen de la película:
         </label>
         <input
-          className="form-input-image"
+          className="form-input"
           id="movieImage"
           type="text"
           placeholder="Imagen"
@@ -38,7 +38,7 @@ function UploadImage(props) {
 
         <input
           type="file"
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={(ev) => setImage(ev.target.files[0])}
         ></input>
         <button onClick={uploadImage} className="form-button">
           Subir imagen

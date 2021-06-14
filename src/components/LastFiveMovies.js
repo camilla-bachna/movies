@@ -12,9 +12,6 @@ function LastFiveMovies(props) {
       <li className="container-list">
         <img src={lastmovie.cover} className="container-image"></img>
         <h3 className="container-heading"> {lastmovie.title}</h3>
-        <span className="container-relatedMovies">
-          Películas relacionadas: {lastmovie.relatedMovies}
-        </span>
       </li>
     );
   });

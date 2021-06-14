@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function RelatedMovies(props) {
-  const [relatedMoviesArray, setRelatedMoviesArray] = useState([]);
   const [isClicked, setClicked] = useState('false');
 
   // add related movie by clicking on one
@@ -9,7 +8,7 @@ function RelatedMovies(props) {
   const handleClickedMovie = (event) => {
     const clickedMovieId = event.currentTarget.id;
 
-    const relatedMoviesIndex = relatedMoviesArray.findIndex(function (
+    const relatedMoviesIndex = props.relatedMoviesArray.findIndex(function (
       relatedMovies
     ) {
       return relatedMovies.id === clickedMovieId;
@@ -18,30 +17,22 @@ function RelatedMovies(props) {
       const movieFound = props.dataToShow.find(function (movie) {
         return movie.id === clickedMovieId;
       });
-      const newRelatedMoviesArray = [...relatedMoviesArray];
+      const newRelatedMoviesArray = [...props.relatedMoviesArray];
       newRelatedMoviesArray.push(movieFound);
-      setRelatedMoviesArray(newRelatedMoviesArray);
+      props.setRelatedMoviesArray(newRelatedMoviesArray);
       setClicked(true);
     } else {
-      const newRelatedMoviesArray = [...relatedMoviesArray];
+      const newRelatedMoviesArray = [...props.relatedMoviesArray];
       newRelatedMoviesArray.splice(relatedMoviesIndex, 1);
-      setRelatedMoviesArray(newRelatedMoviesArray);
+      props.setRelatedMoviesArray(newRelatedMoviesArray);
       setClicked(false);
     }
   };
 
-  const relatedMovies = relatedMoviesArray.map((relatedMovie) => {
-    return (
-      <li className="list__item">
-        <div>{relatedMovie.title}</div>
-      </li>
-    );
-  });
-
   // clicked movie
 
   function clickedMovies(data) {
-    const movieFound = relatedMoviesArray.find(function (relatedMovie) {
+    const movieFound = props.relatedMoviesArray.find(function (relatedMovie) {
       return data.id === relatedMovie.id;
     });
     if (movieFound === undefined) {
@@ -82,7 +73,10 @@ function RelatedMovies(props) {
 
   return (
     <>
-      <div>{relatedMovies}</div>
+      <p className="form-paragraph">
+        Por favor haz clic en la película que deseas seleccionar como película
+        relacionada.
+      </p>
       <div className="container-search">{moviesToShow}</div>
     </>
   );

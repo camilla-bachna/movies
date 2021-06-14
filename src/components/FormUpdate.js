@@ -1,17 +1,16 @@
 import { db } from './Firebase';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function FormUpdate(props) {
-  //console.log(newMovie);
   const id = props.movieFound.id;
   const [movieTitle, setMovieTitle] = useState(props.movieFound.title);
   const [movieDescription, setMovieDescription] = useState(
     props.movieFound.description
   );
-  const [relatedMovies, setRelatedMovies] = useState(
-    props.movieFound.relatedMovies
-  );
+  const cover = props.cover;
+  const setCover = props.setCover;
+  const relatedMoviesArray = props.relatedMoviesArray;
+  const setRelatedMoviesArray = props.setRelatedMoviesArray;
 
   // modify movie function
   const ref = db.collection('movies');
@@ -26,10 +25,22 @@ function FormUpdate(props) {
       .catch((error) => {
         alert(error.message);
       });
-    /* console.log(updatedMovie.id); */
+    console.log(updatedMovie);
   }
 
-  /* preventDefault for form */
+  // get movie id from array of related movies
+
+  const relatedMovieId = relatedMoviesArray.map((relatedMovie) => {
+    return relatedMovie.id;
+  });
+
+  // print selected movies
+
+  const relatedMoviesList = relatedMoviesArray.map((relatedMovie) => {
+    return <span>{`${relatedMovie.title}, `}</span>;
+  });
+
+  // preventDefault for form
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -44,7 +55,8 @@ function FormUpdate(props) {
           updateMovie({
             movieTitle: movieTitle,
             movieDescription: movieDescription,
-            relatedMovies: relatedMovies,
+            cover: cover,
+            tag: relatedMovieId,
             id: id,
           })
         }
@@ -77,21 +89,18 @@ function FormUpdate(props) {
           Películas relacionadas:
         </label>
         <input
-          className="form-input"
+          className="form-input-hidden"
           id="relatedMovies"
           type="text"
           placeholder="Películas relacionadas"
-          value={relatedMovies}
-          onChange={(ev) => setRelatedMovies(ev.target.value)}
+          value={relatedMovieId}
+          onChange={(ev) => setRelatedMoviesArray(ev.target.value)}
         />
-
-        <button className="form-button" type="submit">
+        <span>{relatedMoviesList}</span>
+        <button className="form-button-addMovie" type="submit">
           Modifica la película
         </button>
       </form>
-      <Link to="/showMovie" className="link">
-        <h4 className="form-link">Volver a ver todas las películas</h4>
-      </Link>
     </>
   );
 }
