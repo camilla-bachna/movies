@@ -16,7 +16,7 @@ He usado
 
 - También hay un campo de búsqueda, los resultados están paginados de 10 en 10.
 
-- Para ver más información el usuario puede hacer clic sobre sobre un botón en cada tarjeta de una película, la información aparecerá a pantalla completa (He usado rutas y React router).
+- Para ver más información el usuario puede hacer clic sobre un botón en cada tarjeta de una película, la información aparecerá en pantalla completa (He usado rutas y React router).
 
 ## Detalle de cada película
 
