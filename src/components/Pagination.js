@@ -10,7 +10,7 @@ function ShowMovies(props) {
       <li key={number} className="pagination-list">
         <a
           onClick={() => props.paginate(number)}
-          href="!#"
+          href="#"
           className="pagination-link"
         >
           {number}
